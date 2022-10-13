@@ -58,8 +58,9 @@ public class CoffeeMaker {
 	 * Cleanup coffee maker emptying all its content
 	 */
 	public void cleanup() {
-		
-		// TODO: code this method
+		this.coffee = 0;
+		this.milk = 0;
+		this.chocolate = 0;
 	}
 
 	/**
@@ -71,7 +72,14 @@ public class CoffeeMaker {
 	 */
 	public void addIngredients(int amtCoffee, int amtMilk, int amtChocolate) throws Exception {
 
-		// TODO: code this method
+		if (amtCoffee < 0 || amtMilk < 0 || amtChocolate < 0)
+		{
+			throw new Exception("Inventory Exception");
+		}
+
+		this.coffee = amtCoffee;
+		this.milk = amtMilk;
+		this.chocolate = amtChocolate;
 	}
 
 	/**
@@ -82,9 +90,15 @@ public class CoffeeMaker {
 	 * @return int
 	 */
 	public int makeEspresso(int amtPaid) {
-
-		// TODO: code this method
-		return -1;
+		if (this.coffee < 1)
+		{
+			return amtPaid;
+		}
+		else
+		{
+			this.coffee -= 1;
+			return amtPaid - 1;
+		}
 	}
 
 	/**
@@ -95,8 +109,15 @@ public class CoffeeMaker {
 	 * @return int
 	 */
 	public int makeLatte(int amtPaid) {
-
-		// TODO: code this method
-		return -1;
+		if (this.coffee < 2 && this.coffee < 1)
+		{
+			return amtPaid;
+		}
+		else
+		{
+			this.coffee -= 2;
+			this.milk -= 1;
+			return amtPaid - 2;
+		}
 	}    
 }
